@@ -6,7 +6,7 @@ Requires=docker.service
 [Service]
 User=root
 PermissionsStartOnly=true
-ExecStart=/usr/bin/docker run --net=host --privileged --name=calico-node \
+ExecStart=/usr/bin/docker run --net=host --privileged --name=calico-node-{{NODE_NAME}} \
   -e ETCD_ENDPOINTS={{ETCD_ENDPOINTS}} \
   -e CALICO_LIBNETWORK_ENABLED=true \
   -e CALICO_NETWORKING_BACKEND=bird \
@@ -19,6 +19,7 @@ ExecStart=/usr/bin/docker run --net=host --privileged --name=calico-node \
   -e FELIX_IPINIPMTU=1440 \
   -e FELIX_HEALTHENABLED=true \
   -e IP={{NODE_IP}} \
+  -e HOSTNAME={{NODE_NAME}}-{{NODE_IP}} \
   -v /var/run/calico:/var/run/calico \
   -v /lib/modules:/lib/modules \
   -v /run/docker/plugins:/run/docker/plugins \
