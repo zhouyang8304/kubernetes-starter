@@ -38,7 +38,7 @@ $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 
 - 安装最新的稳定版
 ```bash
-$ apt-get install -y docker-ce
+$ apt-get install -y docker.io
 ```
 - 安装指定版本
 ```bash
@@ -77,6 +77,7 @@ $ ufw status
 #写入配置文件
 $ cat <<EOF > /etc/sysctl.d/k8s.conf
 net.ipv4.ip_forward = 1
+net.ipv4.conf.all.rp_filter = 1
 net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
 EOF
